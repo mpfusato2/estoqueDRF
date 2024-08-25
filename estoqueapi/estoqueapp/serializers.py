@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .views import Produto
+from .views import Produto, Cliente
 
 class ProdutoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,6 +10,18 @@ class ProdutoSerializer(serializers.ModelSerializer):
             'descricao',            
             'criacao',
             'atualizacao',
-            'ativo'
+            'ativo',
+            'valor'
         )
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = (
+            'id',            
+            'nome',            
+            'criacao',
+            'atualizacao',
+            'ativo'            
+        )        
 

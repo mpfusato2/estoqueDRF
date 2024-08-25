@@ -1,10 +1,13 @@
 from django.urls import path
-#from django.conf.urls import url
 
-#from .views import ProdutoApiView
-from .views import ProdutoApiView
+from rest_framework.routers import SimpleRouter
+
+from .views import (ProdutoListCreateAPI, ProdutoUpdateDeleteAPI, ClienteViewSet)
+
+router = SimpleRouter()
+router.register('clientes', ClienteViewSet)
 
 urlpatterns = [
-    path('produtos/', ProdutoApiView.as_view(), name='produtos'),    
-
+    path('produtos/', ProdutoListCreateAPI.as_view(), name='produtos'),
+    path('produtos/<int:pk>/', ProdutoUpdateDeleteAPI.as_view(), name='produto'),    
 ]
