@@ -34,4 +34,8 @@ class ClienteViewSet(
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
 
+'''
+API de Pedido
+'''    
+
 
