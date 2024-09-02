@@ -31,46 +31,17 @@ class Cliente(Base):
     def __str__(self):
         return self.nome
     
-class Estoque():
-     produto = models.ForeignKey(Produto, related_name="estoque", on_delete=models.CASCADE)
-     quantidade = models.DecimalField(max_digits=12, decimal_places=2)
+class Estoque(models.Model):
+    produto = models.ForeignKey(Produto, related_name="produto_estoque", on_delete=models.CASCADE)
+    quantidade = models.DecimalField(max_digits=12, decimal_places=2)
 
-     class Meta:
+    class Meta:
         verbose_name = 'Estoque'
         verbose_name_plural = 'Estoques'
         unique_together = ['produto']
         ordering = ['id']
 
-     def __str__(self):
+    def __str__(self):
         return f'Estoque de produto {self.produto} com um total de {self.quantidade}'
+        
      
-
-class Pedido():
-     produto = models.ForeignKey(Produto, related_name="estoque", on_delete=models.CASCADE)
-     quantidade = models.DecimalField(max_digits=12, decimal_places=2)
-     valor_total = models.DecimalField(max_digits=12, decimal_places=2)
-
-     class Meta:
-        verbose_name = 'Pedido'
-        verbose_name_plural = 'Pedidos'        
-        ordering = ['id']
-
-     def __str__(self):
-        return f'Pedido para produto {self.produto} com um total de {self.quantidade} no valor de {self.valor_total}'
-     
-class Venda():
-     produto = models.ForeignKey(Produto, related_name="venda", on_delete=models.CASCADE)
-     cliente = models.ForeignKey(Cliente, related_name="venda", on_delete=models.CASCADE)
-     quantidade = models.DecimalField(max_digits=12, decimal_places=2)
-     valor_total = models.DecimalField(max_digits=12, decimal_places=2)
-
-     class Meta:
-        verbose_name = 'Vendas'
-        verbose_name_plural = 'Vendas'        
-        ordering = ['id']
-
-     def __str__(self):
-        return f'Venda para produto {self.produto} com um total de {self.quantidade} no valor de {self.valor_total}'
-         
-
-    
